@@ -1,4 +1,19 @@
+/**
+ * This file contains a set of internal simple matrix operations.
+ * Created this implementation for Google ApScript compatibility
+ * and to have a fully encapsultated implementation with no other
+ * dependencies.
+ */
 
+
+
+/**
+ * Filters a M x N set of input cell ranges of values to eliminate blank rows and columns.
+ * Creates a matrix of size of rows x columns to be input into the eigen functions.
+ * This is neccesary since the input of stocks is variable from 1 to 10.  The input
+ * size of the range is 10 x 10 cells fixed and this method reduces that to eliminate
+ * possible blanks.
+ */
 function filterMatrixBlanks(M) {
 
     var filtered = [];
@@ -20,7 +35,7 @@ function filterMatrixBlanks(M) {
 
 
 /**
- *  Helper function to initialize arrays without using Arrays.fill
+ *  Helper function to initialize arrays without using Arrays.fill due to Google AppScript compatibility.
  *
  */
 function init_array(rows, cols, value) {
@@ -190,7 +205,6 @@ function subtract_matrices(A,B) {
     return result;
 }
 
-//
 /**
  *  Utility function to simplify a vector into a standard array
  *

@@ -1,5 +1,5 @@
 /**
- * A self contained implementation of eigendecompostiion using the power iteration method and
+ * A self contained implementation of eigen-decomposition using the power iteration method and
  * shifting by deflation.  This implementation uses a simple array based matrix implementation
  * to allow this code to be embedded without external dependencies.
  *
@@ -7,15 +7,25 @@
  */
 
 
+
+/**
+ * This is the button callback to invoke the eigens calculations.
+ * This is a workaround due to what may be a bug in the Google ApScript engine.
+ * This simply copies the values of the covariance matrix to a target range as
+ * a copy paste values.  Due to the complexity of the cell functions, it appears
+ * that Google ApScript could not interpret or keep up with the cell calculations.
+ */
 function calcEigens() {
 
     var ss = SpreadsheetApp.getActiveSpreadsheet();
-    ss.getRange('Portfolio!C20:L29').copyTo(ss.getRange('PCA!C101:C111'), SpreadsheetApp.CopyPasteType.PASTE_VALUES, false);
+    ss.getRange('Portfolio!C23:L32').copyTo(ss.getRange('PCA!C101:C111'), SpreadsheetApp.CopyPasteType.PASTE_VALUES, false);
 
 }
 
+
 /**
- *  Compute the eigenvalue and eigenvector decomposition of a matrix.  The matrix must be symetric.
+ *  Compute the eigenvalue and eigenvector decomposition of a cell range.
+ *  The cell range must be square and symetric.
  *
  *  @return {Array[]} A 2 dimensional array.  The first row are the eigenvalues followed by colummns of the cooresponding eigenvectors.
  *
@@ -54,7 +64,8 @@ function eigens(input) {
 
 
 /**
- *  Compute the eigenvalues of a matrix.  The matrix must be symetric.
+ *  Compute the eigenvalues of a cell range as input.
+ *  The cell range must be square and symetric.
  *
  *  @return {Array} The eigenvalues of the matrix.
  *
@@ -75,7 +86,8 @@ function eigenvalues(input) {
 
 
 /**
- *  Compute the eigenvectors of a matrix.  The matrix must be symetric.
+ *  Compute the eigenvectors of a cell range as imput.
+ *  The cell range must be square and symetric.
  *
  *  @return {Array[]} The eigenvectors of the matrix as column vectors.
  *
